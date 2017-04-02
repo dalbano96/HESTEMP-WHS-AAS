@@ -15,8 +15,8 @@
 RTC_DS1307 rtc;
 LiquidCrystal_I2C lcd(0x3F,2,1,0,4,5,6,7);
 
-const int pmPin = 4;
-const int cardSelect = 10;
+const int pmPin = 8;
+const int cardSelect = 4;
 unsigned long duration;
 unsigned long starttime;
 unsigned long sampletime_ms = 30000;

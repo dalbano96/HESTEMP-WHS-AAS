@@ -1,7 +1,7 @@
 #include<SPI.h>
 #include<SD.h>
 
-const int cardSelect = 10;
+const int cardSelect = 4;
 
 void setup() {
 	Serial.begin(9600);
@@ -11,7 +11,7 @@ void setup() {
 	
 	Serial.print("Initializing SD card...");
 	
-	if(!SD.begin(chipSelect)) {
+	if(!SD.begin(cardSelect)) {
 		Serial.println("Card failed, or not present");
 		return;
 	}
