@@ -26,6 +26,11 @@ float concentration = 0;
 double batteryVoltage = 7.4;
 String newFilename;
 
+/**
+*	Function to retrieve the current date and time
+*	@pre retrieve date and time
+*	@post set file date and time
+*/
 void dateTime(uint16_t* date, uint16_t* time) {
 	DateTime now = rtc.now();
 	*date = FAT_DATE(now.year(), now.month(), now.day());
@@ -186,7 +191,7 @@ String setFilename() {
 void printBatteryPerc() {
 	int sensorValue = analogRead(A0);
 	float voltage = 2 * (sensorValue * (5.0 / 1023.0));
-	float percentage = ((voltage - batteryVoltage) / 0.7) * 100;
+	float percentage = -1 * ((voltage - batteryVoltage) / 0.7) * 100;
 	Serial.print("Votage: ");
 	Serial.println(voltage);
 	Serial.print("Percentage: ");
