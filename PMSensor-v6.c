@@ -159,6 +159,7 @@ void writeToFile() {
 	lcd.print("conc:");
 	lcd.setCursor(5,0);
 	lcd.print(concentration);
+	
     
     dataFile.close();
   }
@@ -190,14 +191,16 @@ String setFilename() {
 
 void printBatteryPerc() {
 	int sensorValue = analogRead(A0);
-	float voltage = 2 * (sensorValue * (5.0 / 1023.0));
+	float voltage = (sensorValue * (5.0 / 1023.0)) * 2;
 	float percentage = -1 * ((voltage - batteryVoltage) / 0.7) * 100;
 	Serial.print("Votage: ");
 	Serial.println(voltage);
 	Serial.print("Percentage: ");
-	Serial.println(percentage);
+	Serial.print(percentage);
+	Serial.println("%");
 	lcd.setCursor(0,1);
-	lcd.print(percentage);
+	lcd.print("Volt: ");
+	lcd.print(voltage);
 	Serial.println();
 	delay(1000);
 }
