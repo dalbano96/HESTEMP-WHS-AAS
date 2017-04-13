@@ -201,6 +201,9 @@ void printBatteryPerc() {
 	lcd.setCursor(0,1);
 	lcd.print("Volt: ");
 	lcd.print(voltage);
+	// lcd.print("Perc: ");
+	// lcd.print(percentage);
+	// lcd.print("%");
 	Serial.println();
 	delay(1000);
 }
