@@ -12,7 +12,7 @@
 #include<Wire.h>
 #include<RTClib.h>
 
-RTC_DS1307 rtc;
+RTC_PCF8523 rtc;
 LiquidCrystal_I2C lcd(0x3F,2,1,0,4,5,6,7);
 
 const int pmPin = 8;
@@ -80,7 +80,7 @@ void setup() {
   }
 
 	// Checking if the RTC is running
-  if(!rtc.isrunning()) {
+  if(!rtc.initialized()) {
 	  Serial.println("RTC is NOT running!");
 		lcd.setCursor(0,0);
 		lcd.print("RTC is NOT running!");
@@ -91,6 +91,7 @@ void setup() {
   // Set the date and time for the RTC
   // F(__DATE__) - Retrieve the system's current date
   // F(__TIME__) - Retrieve teh system's current time
+	/***  Adjust date and time once, then upload, then comment out and upload operation code ***/
   rtc.adjust(DateTime(F(__DATE__), F(__TIME__)));
   SdFile::dateTimeCallback(dateTime);
   
@@ -133,8 +134,11 @@ void writeToFile() {
 	dataFile.print(now.day(), DEC);
 	dataFile.print(",");
 	dataFile.print(now.hour(), DEC);
-	dataFile.print(now.minute(), DEC);
-	dataFile.print(now.second(), DEC);
+  dataFile.print(':');
+  dataFile.print(now.minute(), DEC);
+  dataFile.print(':');
+  dataFile.print(now.second(), DEC);
+  dataFile.print(':');
 	dataFile.println();
 	
 	Serial.print(now.month(), DEC);
