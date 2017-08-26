@@ -1,7 +1,7 @@
 /**
   Daryl Albano
   02/03/17
-  PMSensor-v7.c
+  PMSensor-v6.c
   Collects analyzed data received from sensor. Stores data to .csv file
 **/
 
