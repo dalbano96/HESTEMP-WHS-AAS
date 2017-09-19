@@ -112,7 +112,7 @@ void loop() {
 		ratio = lowpulseoccupancy/(sampletime_ms*10.0);
 		concentration = 1.1*pow(ratio,3)-3.8*pow(ratio,2)+520*ratio+0.62;
 		writeToFile();
-		printBatteryPerc();
+		// printBatteryPerc();
 		lowpulseoccupancy = 0;
 		starttime = millis();
 	}
@@ -171,6 +171,8 @@ void writeToFile() {
 		lcd.print("conc:");
 		lcd.setCursor(5,0);
 		lcd.print(concentration);
+		lcd.setCursor(0,1);
+		lcd.print(newFilename);
 
 
 		dataFile.close();
