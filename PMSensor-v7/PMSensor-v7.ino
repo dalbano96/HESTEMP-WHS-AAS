@@ -171,20 +171,9 @@ void writeToFile() {
 		lcd.print("conc:");
 		lcd.setCursor(5,0);
 		lcd.print(concentration);
+		lcd.setCursor(0,1);
+		lcd.print(newFilename);
 
-    lcd.setCursor(0,1);
-    lcd.print(now.hour(), DEC);
-    lcd.print(":");
-    lcd.print(now.minute(), DEC);
-    lcd.print(":");
-    lcd.print(now.second(), DEC);
-
-    lcd.print(" ");
-    lcd.print(now.month(), DEC);
-    lcd.print("/");
-    lcd.print(now.day(), DEC);
-    lcd.print("/");
-    lcd.print(now.year(), DEC);
 
 		dataFile.close();
 	}
