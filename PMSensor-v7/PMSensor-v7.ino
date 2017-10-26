@@ -172,8 +172,14 @@ void writeToFile() {
 		lcd.setCursor(5,0);
 		lcd.print(concentration);
 		lcd.setCursor(0,1);
-		lcd.print(newFilename);
+		// lcd.print(newFilename);
 
+		lcd.print(now.hour(), DEC);
+		lcd.print(":");
+		lcd.print(now.minute(), DEC);
+		lcd.print(":");
+		lcd.print(now.second(), DEC);
+		lcd.println();
 
 		dataFile.close();
 	}
