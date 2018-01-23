@@ -112,7 +112,7 @@ void loop() {
 		ratio = lowpulseoccupancy/(sampletime_ms*10.0);
 		concentration = 1.1*pow(ratio,3)-3.8*pow(ratio,2)+520*ratio+0.62;
 		writeToFile();
-		// printBatteryPerc();
+		printBatteryPerc();
 		lowpulseoccupancy = 0;
 		starttime = millis();
 	}
@@ -172,14 +172,15 @@ void writeToFile() {
 		lcd.setCursor(5,0);
 		lcd.print(concentration);
 		lcd.setCursor(0,1);
-		// lcd.print(newFilename);
+		lcd.print(newFilename);
 
-		lcd.print(now.hour(), DEC);
-		lcd.print(":");
-		lcd.print(now.minute(), DEC);
-		lcd.print(":");
-		lcd.print(now.second(), DEC);
-		lcd.println();
+
+		// lcd.print(now.hour(), DEC);
+		// lcd.print(":");
+		// lcd.print(now.minute(), DEC);
+		// lcd.print(":");
+		// lcd.print(now.second(), DEC);
+		// lcd.println();
 
 		dataFile.close();
 	}
@@ -221,18 +222,19 @@ String setFilename() {
 void printBatteryPerc() {
 	int sensorValue = analogRead(A0);
 	float voltage = (sensorValue * (5.0 / 1023.0)) * 2;
-	float percentage = -1 * ((voltage - batteryVoltage) / 0.7) * 100;
+	float deltaPercentage = ((voltage - batteryVoltage) / 0.7) * 100;
+	float percentage = 100.0 - deltaPercentage;
 	Serial.print("Votage: ");
 	Serial.println(voltage);
 	Serial.print("Percentage: ");
 	Serial.print(percentage);
 	Serial.println("%");
 	lcd.setCursor(0,1);
-	lcd.print("Volt: ");
-	lcd.print(voltage);
-	// lcd.print("Perc: ");
-	// lcd.print(percentage);
-	// lcd.print("%");
+//	lcd.print("Volt: ");
+//	lcd.print(voltage);
+	lcd.print("Perc: ");
+	lcd.print(percentage);
+	lcd.print("%");
 	Serial.println();
 	delay(1000);
 }
