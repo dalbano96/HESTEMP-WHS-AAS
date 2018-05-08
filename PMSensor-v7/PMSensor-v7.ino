@@ -10,9 +10,7 @@
 #include<LCD.h>
 #include<LiquidCrystal_I2C.h>
 #include<Wire.h>
-// #include<RTClib.h>
 
-RTC_PCF8523 rtc;
 LiquidCrystal_I2C lcd(0x3F, 2, 1, 0, 4, 5, 6, 7);
 
 const int pmPin = 8;
